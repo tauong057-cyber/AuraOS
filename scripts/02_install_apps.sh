@@ -8,6 +8,13 @@ echo "============================================================"
 echo " [AuraOS Builder] Bước 2: Cài đặt Desktop, Office & Apps"
 echo "============================================================"
 
+# Cấu hình đầy đủ repositories cho Debian Bookworm (main, contrib, non-free, non-free-firmware)
+cat <<EOF > "$CHROOT_DIR/etc/apt/sources.list"
+deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+EOF
+
 # Đọc danh sách gói từ packages.list (bỏ qua comment và dòng trống)
 PACKAGE_LIST=$(grep -v '^#' "$PACKAGES_FILE" | grep -v '^[[:space:]]*$' | tr '\n' ' ')
 
@@ -23,7 +30,12 @@ mount --bind /sys "$CHROOT_DIR/sys"
 chroot "$CHROOT_DIR" /bin/bash -c "
     export DEBIAN_FRONTEND=noninteractive
     apt-get update -y
-    apt-get install -y --no-install-recommends $PACKAGE_LIST
+    apt-get install -y --no-install-recommends $PACKAGE_LIST || {
+        echo '[!] Thu cai dat tung nhom goi...'
+        for pkg in $PACKAGE_LIST; do
+            apt-get install -y --no-install-recommends \$pkg || echo \"[!] Bo qua goi khong ton tai: \$pkg\"
+        done
+    }
     apt-get clean
     rm -rf /var/lib/apt/lists/*
 "
