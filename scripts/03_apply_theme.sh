@@ -34,47 +34,52 @@ mkdir -p "$CHROOT_DIR/usr/share/themes"
 mkdir -p "$CHROOT_DIR/usr/share/backgrounds/auraos"
 cp "$CONFIG_DIR/branding/aura-wallpaper.svg" "$CHROOT_DIR/usr/share/backgrounds/auraos/wallpaper.svg"
 
-# Tinh chỉnh bên trong chroot
-chroot "$CHROOT_DIR" /bin/bash -c '
-    # Đặt hostname
-    echo "auraos" > /etc/hostname
-    cat <<EOF > /etc/hosts
+# Tinh chỉnh bên trong chroot qua script an toàn
+cat <<'EOF' > "$CHROOT_DIR/tmp/setup_theme_inside.sh"
+#!/bin/bash
+
+# Đặt hostname
+echo "auraos" > /etc/hostname
+cat <<HOSTS > /etc/hosts
 127.0.0.1   localhost
 127.0.1.1   auraos
-EOF
+HOSTS
 
-    # Cấu hình DNS mặc định (Google & Cloudflare)
-    cat <<EOF > /etc/resolv.conf
+# Cấu hình DNS mặc định (Google & Cloudflare)
+cat <<RESOLV > /etc/resolv.conf
 nameserver 1.1.1.1
 nameserver 8.8.8.8
-EOF
+RESOLV
 
-    # Tạo user mặc định: aura / mật khẩu: aura
-    if ! id -u aura >/dev/null 2>&1; then
-        useradd -m -s /bin/bash -G sudo,audio,video,plugdev,netdev aura
-        echo "aura:aura" | chpasswd
-        echo "root:root" | chpasswd
-        echo "aura ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-    fi
+# Tạo user mặc định: aura / mật khẩu: aura
+if ! id -u aura >/dev/null 2>&1; then
+    useradd -m -s /bin/bash -G sudo,audio,video,plugdev,netdev aura
+    echo "aura:aura" | chpasswd
+    echo "root:root" | chpasswd
+    echo "aura ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+fi
 
-    # Sao chép skel sang thư mục người dùng aura
-    cp -r /etc/skel/. /home/aura/
-    chown -R aura:aura /home/aura/
+# Sao chép skel sang thư mục người dùng aura
+cp -r /etc/skel/. /home/aura/
+chown -R aura:aura /home/aura/
 
-    # Cấu hình LightDM tự động đăng nhập vào desktop
-    mkdir -p /etc/lightdm/lightdm.conf.d
-    cat <<EOF > /etc/lightdm/lightdm.conf.d/autologin.conf
+# Cấu hình LightDM tự động đăng nhập vào desktop
+mkdir -p /etc/lightdm/lightdm.conf.d
+cat <<LIGHTDM > /etc/lightdm/lightdm.conf.d/autologin.conf
 [Seat:*]
 autologin-user=aura
 autologin-user-timeout=0
 user-session=xfce
+LIGHTDM
+
+# Bật dịch vụ hệ thống
+systemctl enable NetworkManager 2>/dev/null || true
+systemctl enable lightdm 2>/dev/null || true
 EOF
 
-    # Bật dịch vụ NetworkManager, VirtualBox Guest và LightDM
-    systemctl enable NetworkManager || true
-    systemctl enable lightdm || true
-    systemctl enable virtualbox-guest-utils || true
-'
+chmod +x "$CHROOT_DIR/tmp/setup_theme_inside.sh"
+chroot "$CHROOT_DIR" /tmp/setup_theme_inside.sh
+rm -f "$CHROOT_DIR/tmp/setup_theme_inside.sh"
 
 # Unmount
 umount "$CHROOT_DIR/sys" || true
