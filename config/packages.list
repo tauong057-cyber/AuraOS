@@ -1,0 +1,95 @@
+# ==============================================================================
+# AuraOS Packages Definition
+# Tối ưu hóa siêu nhẹ, đầy đủ tính năng văn phòng, trình duyệt, đa phương tiện
+# ==============================================================================
+
+# Core System & Kernel
+linux-image-amd64
+live-boot
+systemd-sysv
+sudo
+locales
+tzdata
+
+# Networking & Connectivity
+network-manager
+network-manager-gnome
+wireless-tools
+wpasupplicant
+curl
+wget
+net-tools
+iproute2
+ca-certificates
+openssh-client
+
+# Audio & Media
+pulseaudio
+pavucontrol
+alsa-utils
+vlc-bin
+mpv
+
+# Display Server & Login Manager
+xorg
+xserver-xorg
+xserver-xorg-video-all
+xinit
+lightdm
+lightdm-gtk-greeter
+
+# Desktop Environment (XFCE4 Core - Super Lightweight < 400MB RAM)
+xfce4-session
+xfwm4
+xfce4-panel
+xfce4-settings
+xfdesktop4
+thunar
+thunar-archive-plugin
+thunar-volman
+file-roller
+mousepad
+galculator
+xarchiver
+
+# macOS Look & Feel Components
+plank                     # macOS Dock
+picom                     # Glassmorphism, Rounded corners & Shadows
+rofi                      # macOS Spotlight Search launcher
+xfce4-whiskermenu-plugin  # Start / Aura Menu
+xfce4-pulseaudio-plugin   # Volume control in top bar
+xfce4-power-manager       # Battery & power management
+feh                       # Fast wallpaper renderer
+fonts-inter               # Clean modern Apple-like UI font
+fonts-roboto
+fonts-noto-color-emoji
+papirus-icon-theme        # Rich colorful icons
+arc-theme
+
+# Office Suite (Full LibreOffice - Lightweight mode)
+libreoffice-writer
+libreoffice-calc
+libreoffice-impress
+libreoffice-gtk3
+libreoffice-style-elementary
+pdfarranger
+evince                    # Fast PDF / Document Viewer (macOS Preview style)
+
+# Internet & Web Browser
+chromium
+chromium-l10n
+
+# System Utilities & Terminal
+xfce4-terminal
+htop
+neofetch
+unzip
+zip
+tar
+p7zip-full
+git
+python3
+
+# VirtualBox Guest Additions (Auto screen resize, shared clipboard, 3D accel)
+virtualbox-guest-utils
+virtualbox-guest-x11

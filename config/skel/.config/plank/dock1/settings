@@ -1,0 +1,15 @@
+[PlankDockPreferences]
+Theme=WhiteSur
+Position=Bottom
+Alignment=Center
+Offset=0
+IconSize=48
+ZoomEnabled=true
+ZoomPercent=140
+HideMode=Auto
+HideDelay=100
+UnhideDelay=100
+PressureReveal=false
+PinnedOnly=false
+ShowDockItem=false
+ItemShadow=true

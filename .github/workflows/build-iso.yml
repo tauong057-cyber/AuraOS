@@ -1,0 +1,30 @@
+name: Build AuraOS Bootable ISO
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y debootstrap squashfs-tools xorriso isolinux syslinux-efi grub-pc-bin grub-efi-amd64-bin mtools dosfstools
+
+      - name: Build AuraOS ISO
+        run: |
+          chmod +x build.sh scripts/*.sh
+          sudo ./build.sh
+
+      - name: Upload ISO Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: AuraOS-v1.0-x86_64-ISO
+          path: output/AuraOS-v1.0-x86_64.iso
+          retention-days: 14

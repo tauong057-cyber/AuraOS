@@ -1,0 +1,77 @@
+/**
+ * AuraOS Spotlight Theme (macOS Search Bar style)
+ */
+
+* {
+    background: rgba(255, 255, 255, 0.85);
+    background-alt: rgba(240, 240, 245, 0.9);
+    foreground: #1d1d1f;
+    selected: #0071e3;
+    selected-fg: #ffffff;
+    border-color: rgba(0, 0, 0, 0.12);
+    font: "Inter 12";
+}
+
+window {
+    transparency: "real";
+    background-color: @background;
+    border: 1px solid;
+    border-color: @border-color;
+    border-radius: 16px;
+    width: 600px;
+    location: center;
+    anchor: center;
+    padding: 16px;
+}
+
+inputbar {
+    children: [ prompt, entry ];
+    background-color: @background-alt;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 0px 0px 14px 0px;
+}
+
+prompt {
+    font: "Inter Bold 12";
+    text-color: #86868b;
+    margin: 0px 8px 0px 0px;
+}
+
+entry {
+    font: "Inter 12";
+    text-color: @foreground;
+    placeholder: "Spotlight Search (Apps, Files, Calculator)...";
+    placeholder-color: #86868b;
+}
+
+listview {
+    lines: 7;
+    columns: 1;
+    scrollbar: false;
+    cycle: true;
+    background-color: transparent;
+}
+
+element {
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 2px 0px;
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+element selected {
+    background-color: @selected;
+    text-color: @selected-fg;
+}
+
+element-icon {
+    size: 28px;
+    margin: 0px 12px 0px 0px;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}

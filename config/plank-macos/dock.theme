@@ -1,0 +1,20 @@
+# ==============================================================================
+# AuraOS Plank Dock Theme (macOS Big Sur / Ventura Style)
+# ==============================================================================
+[PlankTheme]
+TopRoundness=12
+BottomRoundness=12
+LineWidth=1
+LineColor=255;;255;;255;;40
+FillStartColor=240;;240;;245;;210
+FillEndColor=230;;230;;235;;220
+InnerStrokeColor=255;;255;;255;;60
+OuterStrokeColor=0;;0;;0;;30
+ShadowColor=0;;0;;0;;45
+ShadowSize=12
+HorizPadding=6
+TopPadding=5
+BottomPadding=6
+ItemPadding=5
+IndicatorColor=50;;130;;246;;255
+IconShadowColor=0;;0;;0;;20

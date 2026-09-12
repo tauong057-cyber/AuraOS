@@ -1,0 +1,8 @@
+# Ignore build artifacts and temp directories
+output/
+build_tmp/
+*.iso
+*.vdi
+*.vmdk
+.DS_Store
+Thumbs.db

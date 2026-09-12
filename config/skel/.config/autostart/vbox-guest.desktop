@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=VBoxClient-all
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=VirtualBox Guest Integration
+Comment=VirtualBox display auto-resize, clipboard and seamless mode

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Exec=picom --config /etc/auraos/picom.conf -b
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name=Picom Compositor
+Comment=Enable smooth glassmorphism effects and rounded corners
