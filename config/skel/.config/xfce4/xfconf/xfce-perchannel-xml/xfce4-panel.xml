@@ -9,7 +9,7 @@
     <property name="length" type="uint" value="100"/>
     <property name="position-locked" type="bool" value="true"/>
     <property name="icon-size" type="uint" value="18"/>
-    <property name="size" type="uint" value="28"/>
+    <property name="size" type="uint" value="30"/>
     <property name="plugin-ids" type="array">
       <value type="int" value="1"/>
       <value type="int" value="2"/>
@@ -18,6 +18,7 @@
       <value type="int" value="5"/>
       <value type="int" value="6"/>
       <value type="int" value="7"/>
+      <value type="int" value="8"/>
     </property>
     <property name="background-style" type="uint" value="0"/>
     <property name="leave-opacity" type="uint" value="95"/>
@@ -28,7 +29,7 @@
       <property name="button-title" type="string" value=" AuraOS"/>
       <property name="show-button-title" type="bool" value="true"/>
       <property name="show-button-icon" type="bool" value="true"/>
-      <property name="button-icon" type="string" value="start-here"/>
+      <property name="button-icon" type="string" value="distributor-logo-debian"/>
     </property>
     <property name="plugin-2" type="string" value="separator">
       <property name="style" type="uint" value="0"/>
@@ -37,15 +38,21 @@
       <property name="style" type="uint" value="0"/>
       <property name="expand" type="bool" value="true"/>
     </property>
-    <property name="plugin-4" type="string" value="pulseaudio"/>
-    <property name="plugin-5" type="string" value="systray">
+    <property name="plugin-4" type="string" value="systray">
       <property name="square-icons" type="bool" value="true"/>
+      <property name="icon-size" type="uint" value="18"/>
     </property>
-    <property name="plugin-6" type="string" value="clock">
+    <property name="plugin-5" type="string" value="pulseaudio">
+      <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
+      <property name="show-notifications" type="bool" value="true"/>
+    </property>
+    <property name="plugin-6" type="string" value="power-manager-plugin"/>
+    <property name="plugin-7" type="string" value="clock">
       <property name="digital-time-format" type="string" value="%a %d %b  %H:%M"/>
       <property name="digital-layout" type="uint" value="3"/>
+      <property name="tooltip-format" type="string" value="%A %d %B %Y"/>
     </property>
-    <property name="plugin-7" type="string" value="actions">
+    <property name="plugin-8" type="string" value="actions">
       <property name="appearance" type="uint" value="0"/>
     </property>
   </property>

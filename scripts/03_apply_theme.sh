@@ -20,11 +20,16 @@ cp "$CONFIG_DIR/picom-glass.conf" "$CHROOT_DIR/etc/auraos/picom.conf"
 cp "$CONFIG_DIR/rofi-spotlight/spotlight.rasi" "$CHROOT_DIR/etc/auraos/spotlight.rasi"
 cp "$CONFIG_DIR/plank-macos/dock.theme" "$CHROOT_DIR/etc/auraos/dock.theme"
 
+# Cài đặt daemon tự động full màn hình và mạng
+mkdir -p "$CHROOT_DIR/usr/local/bin"
+cp "$CONFIG_DIR/branding/aura-display-daemon.sh" "$CHROOT_DIR/usr/local/bin/aura-display-daemon.sh"
+chmod +x "$CHROOT_DIR/usr/local/bin/aura-display-daemon.sh"
+
 # Sao chép /etc/skel để mọi user mới tạo đều có trọn bộ giao diện macOS
 mkdir -p "$CHROOT_DIR/etc/skel"
 cp -r "$CONFIG_DIR/skel/." "$CHROOT_DIR/etc/skel/"
 
-# Tạo thư mục theme và cài đặt WhiteSur Theme
+# Tạo thư mục theme và cài đặt hình nền 4K
 mkdir -p "$CHROOT_DIR/usr/share/themes"
 mkdir -p "$CHROOT_DIR/usr/share/backgrounds/auraos"
 cp "$CONFIG_DIR/branding/aura-wallpaper.svg" "$CHROOT_DIR/usr/share/backgrounds/auraos/wallpaper.svg"
@@ -36,6 +41,12 @@ chroot "$CHROOT_DIR" /bin/bash -c '
     cat <<EOF > /etc/hosts
 127.0.0.1   localhost
 127.0.1.1   auraos
+EOF
+
+    # Cấu hình DNS mặc định (Google & Cloudflare)
+    cat <<EOF > /etc/resolv.conf
+nameserver 1.1.1.1
+nameserver 8.8.8.8
 EOF
 
     # Tạo user mặc định: aura / mật khẩu: aura
@@ -59,9 +70,10 @@ autologin-user-timeout=0
 user-session=xfce
 EOF
 
-    # Bật dịch vụ NetworkManager và VirtualBox Guest
+    # Bật dịch vụ NetworkManager, VirtualBox Guest và LightDM
     systemctl enable NetworkManager || true
     systemctl enable lightdm || true
+    systemctl enable virtualbox-guest-utils || true
 '
 
 # Unmount
@@ -69,4 +81,4 @@ umount "$CHROOT_DIR/sys" || true
 umount "$CHROOT_DIR/proc" || true
 umount "$CHROOT_DIR/dev" || true
 
-echo "[✓] Đã cấu hình hoàn tất giao diện macOS và tài khoản tự động đăng nhập!"
+echo "[✓] Đã cấu hình hoàn tất giao diện macOS, full màn hình và mạng wifi!"

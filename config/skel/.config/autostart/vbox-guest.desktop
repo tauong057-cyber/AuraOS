@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Exec=VBoxClient-all
+Exec=/usr/local/bin/aura-display-daemon.sh
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
-Name=VirtualBox Guest Integration
-Comment=VirtualBox display auto-resize, clipboard and seamless mode
+Name=AuraOS Display & Network Manager
+Comment=Auto full-screen resize, 3D acceleration, NetworkManager tray and Clipboard

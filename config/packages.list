@@ -1,6 +1,6 @@
 # ==============================================================================
-# AuraOS Packages Definition
-# Tối ưu hóa siêu nhẹ, đầy đủ tính năng văn phòng, trình duyệt, đa phương tiện
+# AuraOS Packages Definition (Pro macOS Edition)
+# Siêu nhẹ, đầy đủ Trình duyệt, Mạng Wifi, Office, Driver Full màn hình VirtualBox
 # ==============================================================================
 
 # Core System & Kernel
@@ -11,9 +11,11 @@ sudo
 locales
 tzdata
 
-# Networking & Connectivity
+# Networking & Connectivity (Wifi, LAN, VPN, Hotspot)
 network-manager
 network-manager-gnome
+network-manager-openvpn
+network-manager-openvpn-gnome
 wireless-tools
 wpasupplicant
 curl
@@ -22,23 +24,32 @@ net-tools
 iproute2
 ca-certificates
 openssh-client
+dnsutils
+
+# Display Server, X11, Display Utilities
+xorg
+xserver-xorg
+xserver-xorg-video-all
+xinit
+x11-xserver-utils
+x11-utils
+arandr
+lightdm
+lightdm-gtk-greeter
+
+# VirtualBox & Virtualization Display Drivers (Full Screen Auto-Resize & 3D)
+virtualbox-guest-utils
+virtualbox-guest-x11
+spice-vdagent
 
 # Audio & Media
 pulseaudio
 pavucontrol
 alsa-utils
-vlc-bin
+vlc
 mpv
 
-# Display Server & Login Manager
-xorg
-xserver-xorg
-xserver-xorg-video-all
-xinit
-lightdm
-lightdm-gtk-greeter
-
-# Desktop Environment (XFCE4 Core - Super Lightweight < 400MB RAM)
+# Desktop Environment (XFCE4 Core + macOS Look)
 xfce4-session
 xfwm4
 xfce4-panel
@@ -47,37 +58,42 @@ xfdesktop4
 thunar
 thunar-archive-plugin
 thunar-volman
+thunar-media-tags-plugin
 file-roller
 mousepad
 galculator
 xarchiver
+ristretto
+evince
 
 # macOS Look & Feel Components
-plank                     # macOS Dock
-picom                     # Glassmorphism, Rounded corners & Shadows
+plank                     # macOS Magnifying Dock
+picom                     # Glassmorphism, Rounded 16px Corners & Drop Shadows
 rofi                      # macOS Spotlight Search launcher
-xfce4-whiskermenu-plugin  # Start / Aura Menu
+xfce4-whiskermenu-plugin  # Top Bar Apple/Aura Menu
 xfce4-pulseaudio-plugin   # Volume control in top bar
-xfce4-power-manager       # Battery & power management
-feh                       # Fast wallpaper renderer
+xfce4-power-manager       # Battery indicator
+xfce4-screenshooter       # Screenshot tool (macOS Cmd+Shift+4 style)
+feh                       # Fast 4K wallpaper renderer
 fonts-inter               # Clean modern Apple-like UI font
 fonts-roboto
 fonts-noto-color-emoji
-papirus-icon-theme        # Rich colorful icons
+fonts-font-awesome
+papirus-icon-theme
 arc-theme
 
-# Office Suite (Full LibreOffice - Lightweight mode)
+# Office Suite (Full LibreOffice - Apple Style)
 libreoffice-writer
 libreoffice-calc
 libreoffice-impress
 libreoffice-gtk3
 libreoffice-style-elementary
 pdfarranger
-evince                    # Fast PDF / Document Viewer (macOS Preview style)
 
-# Internet & Web Browser
+# Internet & Web Browsers (Cả Chromium & Firefox)
 chromium
 chromium-l10n
+firefox-esr
 
 # System Utilities & Terminal
 xfce4-terminal
@@ -89,7 +105,4 @@ tar
 p7zip-full
 git
 python3
-
-# VirtualBox Guest Additions (Auto screen resize, shared clipboard, 3D accel)
-virtualbox-guest-utils
-virtualbox-guest-x11
+software-properties-common
